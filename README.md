@@ -1,0 +1,1 @@
+It is a starter project for server application using with Typescript on Node.js
