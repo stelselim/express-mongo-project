@@ -1,5 +1,6 @@
 let SimpleError = {
   Hello: "Simple Error",
+
 };
 
 Object.freeze(SimpleError);
