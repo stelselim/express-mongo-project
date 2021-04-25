@@ -6,10 +6,10 @@ export interface StudentMongooseInterface extends mongoose.Document {
     email: string,
     password: string,
     salt: string,
+    client_id: string,
+    client_secret: string,
     school?: string,
     department?: string,
-    accessToken?: string,
-    refreshToken?: string,
 }
 
 export interface StudentInterface {
@@ -17,10 +17,11 @@ export interface StudentInterface {
     email: string,
     password: string,
     salt: string,
+    client_id: string,
+    client_secret: string,
+    userId: string,
     school?: string,
     department?: string,
-    accessToken?: string,
-    refreshToken?: string,
 }
 
 export interface UpdateStudentInterface {
@@ -29,6 +30,4 @@ export interface UpdateStudentInterface {
     password?: string,
     school?: string,
     department?: string,
-    accessToken?: string,
-    refreshToken?: string,
 }

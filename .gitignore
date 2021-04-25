@@ -1,3 +1,4 @@
 build
 node_modules
 src/model/config.ts
+src/config/key.ts

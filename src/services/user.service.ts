@@ -7,6 +7,8 @@ export const userCreateService = async (name: string, school: string, email: str
 
 
     const salt = crypto.randomBytes(16).toString("hex");
+    const client_id = Math.round((Math.random() * 1000000000000)).toString();
+    const client_secret = crypto.randomBytes(16).toString("hex");
     let passwordHashed = hashPassword(password, salt);
 
     let studentToSave = new Student({
@@ -16,6 +18,8 @@ export const userCreateService = async (name: string, school: string, email: str
         password: passwordHashed,
         department: department,
         salt: salt,
+        client_id: client_id,
+        client_secret: client_secret,
     })
 
     await studentToSave.save();
@@ -45,8 +49,6 @@ export const userUpdateService = async (email: string, updatedStudent: UpdateStu
     student.school = updatedStudent.school ?? studentObject?.school;
     student.department = updatedStudent.department ?? studentObject?.department;
     student.password = updatedStudent.password ?? studentObject?.password;
-    student.refreshToken = updatedStudent.refreshToken ?? studentObject?.refreshToken;
-    student.accessToken = updatedStudent.accessToken ?? studentObject?.accessToken;
 
     await student.save()
 

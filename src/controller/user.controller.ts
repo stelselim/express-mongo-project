@@ -1,9 +1,11 @@
 import express from "express";
 import { UpdateStudentInterface } from "../interfaces/student";
-export const router = express.Router();
+import { authMiddleware } from "../middleware/auth.middleware";
 import { userCreateService, userDeleteService, userGetService, userUpdateService } from '../services/user.service'
 
-router.get("/:email", async (req, res) => {
+export const router = express.Router();
+
+router.get("/:email", authMiddleware, async (req, res) => {
     try {
         const value = await userGetService(req.params.email)
         res.send({ message: value })
@@ -29,7 +31,7 @@ router.post("/create", async (req, res) => {
 
 })
 
-router.post("/delete", async (req, res) => {
+router.post("/delete", authMiddleware, async (req, res) => {
     try {
 
         const value = await userDeleteService(req.body.email);
@@ -41,7 +43,7 @@ router.post("/delete", async (req, res) => {
 })
 
 
-router.post("/update", async (req, res) => {
+router.post("/update", authMiddleware, async (req, res) => {
     try {
         const updateStudent: UpdateStudentInterface = {
             school: req.body.school,
